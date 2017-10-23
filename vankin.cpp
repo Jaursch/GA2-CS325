@@ -6,7 +6,7 @@ using namespace std;
 
 int readN(){
 	ifstream Input;
-	Input.open("input.txt");
+	Input.open("input1.txt");
 	
 	char c;
 	Input.get(c);
@@ -28,14 +28,19 @@ int main(){
 
 	//attempting to read e/ number
 	ifstream Input;
-	Input.open("input.txt");
+	Input.open("input1.txt");
        	char c[4];
-	Input.ignore(256, '\n'); 
+	Input.ignore(256, '\n'); //ignores till second line  
+	for(int j=0; j<n; j++){
+		for(int i = 0; i<n-1; i++){ //gets all but last ele.
+			Input.getline(c, 256, ',');
+			Data[j][i] = atoi(c);	
+		}Input.getline(c, 10, '\n'); //get last ele.
+      		Data[j][n-1] = atoi(c); 
+	}
 	for(int i=0; i<n; i++){
-		Input.getline(c, 256, ',');
-		cout << c << endl;   	
-	} 
-	//cout << c << endl;	
-
+		for(int j=0; j<n; j++){
+			cout << Data[i][j] << endl;
+		} 
+	} 	
 } 
-
