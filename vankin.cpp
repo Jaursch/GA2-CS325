@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int_fast32_t highestScore(int8_t* array, const int_fast16_t &n, int16_t score, int16_t row, int16_t column) {
+int_fast32_t highestScore(int** array, const int_fast16_t &n, int16_t score, int16_t row, int16_t column) {
 	score += array[row][column];
 	if (row == 0)
 		return highestScore(array, n, score, row - 1, column);
