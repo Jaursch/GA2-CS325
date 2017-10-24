@@ -7,11 +7,11 @@ using namespace std;
 
 int_fast32_t highestScore(int8_t* array, const int_fast16_t &n, int16_t score, int16_t row, int16_t column) {
 	score += array[row][column];
-	if (row == 1)
+	if (row == 0)
 		return highestScore(array, n, score, row - 1, column);
-	else if (column == 1)
+	else if (column == 0)
 		return highestScore(array, n, score, row, column - 1);
-	else if (row == 1 && column == 1)
+	else if (row == 0 && column == 0)
 		return score;
 	int32_t down = highestScore(array, n, score, row - 1, column);
 	int32_t right = highestScore(array, n, score, row, column - 1);
@@ -59,5 +59,18 @@ int main(){
 		for(int j=0; j<n; j++){
 			cout << Data[i][j] << endl;
 		} 
-	} 	
+	}
+
+	//Call highestScore() 2n-1 times for each index along the bottom/right edge of the array
+	int_fast32_t score = 0;
+	for (int_fast32_t rowNumber = 0, temp; rowNumber <= n; rowNumber++) {
+		temp = highestScore(array, n, 0, rowNumber, n-1);
+		if (temp > score)
+			temp = score;
+	}
+	for (int_fast32_t columnNumber = 0, temp; columnNumber <= n; columnNumber++) {
+		temp = highestScore(array, n, 0, n - 1, columnNumber);
+		if (temp > score)
+			temp = score;
+	}
 } 
