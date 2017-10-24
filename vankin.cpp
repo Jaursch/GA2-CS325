@@ -5,6 +5,22 @@
 
 using namespace std;
 
+int_fast32_t highestScore(int8_t* array, const int_fast16_t &n, int16_t score, int16_t row, int16_t column) {
+	score += array[row*column];
+	if (row == 1)
+		return highestScore(array, n, score, row - 1, column);
+	else if (column == 1)
+		return highestScore(array, n, score, row, column - 1);
+	else if (row == 1 && column == 1)
+		return score;
+	int32_t down = highestScore(array, n, score, row - 1, column);
+	int32_t right = highestScore(array, n, score, row, column - 1);
+	if (down > right)
+		return down;
+	else
+		return right;
+}
+
 int readN(){
 	ifstream Input;
 	Input.open("input1.txt");
