@@ -15,10 +15,21 @@ int readN(){
 
 	Input.close();
 	return n;		
+}
+
+void readOut(int maxScore){
+	ofstream Output;
+	Output.open("output.txt");
+	if(Output.is_open() ){
+		Output << maxScore;
+	}else{
+		cout << "not open" << endl; 
+	} 	
 } 
 
 int main(){
 	int n = readN() ; //amount of elements in array
+	int maxScore = 0;
 	cout << n << endl;
 	
 	int** Data = new int*[n];
@@ -42,5 +53,7 @@ int main(){
 		for(int j=0; j<n; j++){
 			cout << Data[i][j] << endl;
 		} 
-	} 	
+	}
+
+	readOut(maxScore); 	
 } 
