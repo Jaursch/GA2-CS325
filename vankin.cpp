@@ -25,10 +25,10 @@ int readN(){
 	ifstream Input;
 	Input.open("input1.txt");
 	
-	char c;
-	Input.get(c);
+	char c[8];
+	Input.getline(c, 7, '\n');;
 
-	int n = c - '0'; 
+	int n = atoi(c); 
 
 	Input.close();
 	return n;		
