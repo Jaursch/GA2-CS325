@@ -68,18 +68,19 @@ int main(){
 	}
 	for(int i=0; i<n; i++){
 		for(int j=0; j<n; j++){
-			cout << Data[i][j] << endl;
-		} 
+			cout << Data[i][j] << ", ";
+		}
+		cout << endl;
 	}
 
 	//Call highestScore() 2n-1 times for each index along the bottom/right edge of the array
-	int_fast32_t score = 0;
-	for (int_fast32_t rowNumber = 0, temp; rowNumber <= n; rowNumber++) {
+	int score = 0;
+	for (int rowNumber = 0, temp; rowNumber <= n; rowNumber++) {
 		temp = highestScore(Data, n, 0, rowNumber, n-1);
 		if (temp > score)
 			temp = score;
 	}
-	for (int_fast32_t columnNumber = 0, temp; columnNumber <= n; columnNumber++) {
+	for (int columnNumber = 0, temp; columnNumber <= n; columnNumber++) {
 		temp = highestScore(Data, n, 0, n - 1, columnNumber);
 		if (temp > score)
 			temp = score;
