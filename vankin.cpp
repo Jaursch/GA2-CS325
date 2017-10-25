@@ -32,10 +32,21 @@ int readN(){
 
 	Input.close();
 	return n;		
+}
+
+void readOut(int maxScore){
+	ofstream Output;
+	Output.open("output.txt");
+	if(Output.is_open() ){
+		Output << maxScore;
+	}else{
+		cout << "not open" << endl; 
+	} 	
 } 
 
 int main(){
 	int n = readN() ; //amount of elements in array
+	int maxScore = 0;
 	cout << n << endl;
 	
 	int** Data = new int*[n];
@@ -64,13 +75,15 @@ int main(){
 	//Call highestScore() 2n-1 times for each index along the bottom/right edge of the array
 	int_fast32_t score = 0;
 	for (int_fast32_t rowNumber = 0, temp; rowNumber <= n; rowNumber++) {
-		temp = highestScore(array, n, 0, rowNumber, n-1);
+		temp = highestScore(Data, n, 0, rowNumber, n-1);
 		if (temp > score)
 			temp = score;
 	}
 	for (int_fast32_t columnNumber = 0, temp; columnNumber <= n; columnNumber++) {
-		temp = highestScore(array, n, 0, n - 1, columnNumber);
+		temp = highestScore(Data, n, 0, n - 1, columnNumber);
 		if (temp > score)
 			temp = score;
 	}
+	
+	readOut(maxScore);
 } 
